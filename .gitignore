@@ -1,9 +1,14 @@
 .classpath
 .project
 .settings/
+.properties
+.gitignore
+
 bin/
 build/
 *.class
+
+
 *.log
 .war
 .jar
