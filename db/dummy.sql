@@ -50,5 +50,25 @@ VALUES
 (2, 2, 8.8, '인셉션 봐도 봐도 어렵다 ㅋㅋ', 'public'),
 (1, 2, 9.0, '중간까지 긴장감 장난 아님', 'friends');
 
+-- 기생충 예고편
+INSERT INTO movie_video (movie_id, name, site, type, key_code)
+VALUES 
+(1, '기생충 공식 예고편', 'YouTube', 'Trailer', '5xH0HfJHsaY');
+
+-- 인셉션 예고편
+INSERT INTO movie_video (movie_id, name, site, type, key_code)
+VALUES 
+(2, 'Inception Official Trailer #1', 'YouTube', 'Trailer', '8hP9D6kZseM'),
+(2, 'Inception Final Trailer', 'YouTube', 'Trailer', 'YoHD9XEInc0');
+
+-- 배우와 감독 정보
+INSERT INTO person (name, role, job)
+VALUES 
+('송강호', 'cast', 'Actor'),
+('최우식', 'cast', 'Actor'),
+('봉준호', 'crew', 'Director'),
+('Leonardo DiCaprio', 'cast', 'Actor'),
+('Christopher Nolan', 'crew', 'Director');
+
 
 
