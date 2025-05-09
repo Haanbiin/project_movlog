@@ -1,0 +1,19 @@
+# 모든 텍스트 파일은 자동 줄바꿈 처리
+* text=auto
+
+# 특정 확장자는 LF (Linux/macOS 스타일)로 강제 지정
+*.java text eol=lf
+*.jsp text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.sql text eol=lf
+*.xml text eol=lf
+*.properties text eol=lf
+
+# 바이너리 파일은 줄바꿈 처리 제외
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
