@@ -1,0 +1,98 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 40px;
+  max-width: 1000px;   
+  margin: 0 auto;      
+  gap: 60px;           
+}
+
+.intro {
+    flex: 1;
+    max-width: 600px;
+}
+
+.logo {
+    font-size: 60px;
+    color: #e68070;
+    margin-bottom: 20px;
+}
+
+.slogan {
+    font-size: 20px;
+    color: #1c1e21;
+    margin: 10px 0;
+}
+
+.login-box {
+    flex: 1;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    
+    gap: 12px;
+}
+
+.login-box input {
+    padding: 14px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    
+    margin-bottom: 8px;
+}
+
+.login-btn {
+    padding: 14px;
+    font-size: 16px;
+    background-color: #e68070;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.signup-btn {
+    padding: 14px;
+    font-size: 16px;
+    background-color: #d66b59;
+    color: white;
+    
+    width: 70%;
+    margin: 0 auto;    
+    
+    border: none;
+    border-radius: 6px;
+    
+    cursor: pointer;
+}
+
+.forgot {
+    font-size: 14px;
+    text-align: center;
+    color: #e68070;
+    text-decoration: none;
+}

@@ -15,6 +15,43 @@ CREATE TABLE movie (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+ALTER TABLE movie
+	ADD COLUMN original_title VARCHAR(255),
+	ADD COLUMN runtime INT,
+	ADD COLUMN vote_average DECIMAL(3,1),
+	ADD COLUMN vote_count INT,
+	ADD COLUMN tagline VARCHAR(255);
+    
+--  ## 예고편, 티저 등의 영상 정보 테이블
+CREATE TABLE movie_video (
+    video_id INT PRIMARY KEY AUTO_INCREMENT,
+    movie_id INT,
+    name VARCHAR(255),             -- 영상 이름 (예: Official Trailer #1)
+    site VARCHAR(63),              -- 플랫폼 (예: YouTube)
+    type VARCHAR(63),              -- 예고편 유형 (예: Trailer, Teaser)
+    key_code VARCHAR(63),          -- site에서 사용하는 video key (예: 유튜브 영상 ID)
+    FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE
+);
+
+-- ## 인물 정보 테이블: 배우, 감독 등
+CREATE TABLE person (
+    person_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(63) NOT NULL,         -- 인물 이름
+    role ENUM('cast', 'crew') NOT NULL, -- cast(출연), crew(제작진)
+    job VARCHAR(63)                     -- 역할 (예: Actor, Director, Writer 등)
+);
+
+-- ## 영화-인물 연결 테이블 (다대다 관계)
+CREATE TABLE movie_person (
+    movie_id INT,
+    person_id INT,
+    character_name VARCHAR(63),     -- 출연자의 배역명 (crew는 NULL 가능)
+    PRIMARY KEY (movie_id, person_id),
+    FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE,
+    FOREIGN KEY (person_id) REFERENCES person(person_id) ON DELETE CASCADE
+);
+
+
 -- ## 장르 테이블
 CREATE TABLE genre (
     genre_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -66,6 +103,14 @@ CREATE TABLE review (
     FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE,
     FOREIGN KEY (movie_id) REFERENCES movie(movie_id) ON DELETE CASCADE
 );
+
+
+
+show tables;
+select * from movie;
+select * from user;
+select * from review
+
 
 
 

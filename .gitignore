@@ -12,3 +12,4 @@ build/
 *.log
 .war
 .jar
+/.metadata/
