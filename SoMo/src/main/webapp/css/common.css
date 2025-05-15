@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+/* 전체 공통 초기화 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+    max-width: 1500px; /* 기존보다 1.5배 확대 */
+    
+      display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  
+}
+
+
+.logo {
+    text-align: center;
+    font-size: 48px;
+    color: #e68070;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* select 박스 가로 정렬 */
+.select-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* 성별 라디오 버튼 가로 정렬 */
+.gender-options {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.gender-options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f2f5;
+}
+/* --- 회원가입 페이지 추가 스타일 --- */
+
+
+
+
+.signup-box h1,
+.signup-box p {
+    text-align: center;
+    margin: 0;
+}
+
+.signup-box p {
+    margin-bottom: 16px;
+}
+
+.signup-box form > * {
+    margin-top: 12px;
+}
+
+.signup-btn {
+    display: block;
+    margin: 20px auto 0;
+}
+
+.bottom-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+
+
+/* 회원가입 박스 */
+.signup-box {
+  background-color: #fff;
+  padding: 30px 32px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 타이틀 */
+.signup-box h1 {
+  margin-top: 0;
+  font-size: 28px;
+  color: #1c1e21;
+  margin-bottom: 8px;
+}
+
+.signup-box p {
+  font-size: 14px;
+  color: #606770;
+  margin-bottom: 16px;
+}
+
+/* 입력 필드 */
+.signup-box input,
+.signup-box select {
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* 라디오 버튼 줄맞춤 */
+.gender-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.gender-options label {
+  flex: 1;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* 버튼 */
+.signup-btn {
+  padding: 14px;
+  font-size: 16px;
+  background-color: #e68070;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.signup-btn:hover {
+  background-color: #d66b59;
+}
+
+/* 하단 링크 */
+.signup-box .bottom-link {
+  text-align: center;
+  font-size: 14px;
+  color: #1877f2;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+.signup-box .bottom-link:hover {
+  text-decoration: underline;
+}
+
+/* 도움말 글꼴 */
+.help-text {
+  font-size: 12px;
+  color: #90949c;
+  margin-top: 6px;
+  line-height: 1.5;
+}
