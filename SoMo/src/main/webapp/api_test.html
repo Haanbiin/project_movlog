@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - 평가하기 화면</title>
+
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      padding: 30px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .movie-box {
+      display: flex;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .poster {
+      width: 150px;
+      height: 225px;
+      object-fit: cover;
+      background-color: #eee;
+    }
+
+    .info {
+      padding: 15px 20px;
+      flex: 1;
+    }
+
+    .info h3 {
+      margin-top: 0;
+      font-size: 1.4em;
+    }
+
+    .info p {
+      margin: 5px 0;
+      line-height: 1.4;
+    }
+
+    .stars {
+      margin-top: 10px;
+      font-size: 22px;
+      color: #999;
+    }
+
+    .stars div {
+      line-height: 1.2;
+    }
+  </style>
+
+</head>
+
+<body>
+     <h2>TMBD API 가져오기 테스트</h2>
+  <div id="movie-list"></div>
+
+  <script>
+    const API_KEY = '4b08aae6e78bd394e540c9e73582d7c5';
+    const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`;
+    const IMG_URL = 'https://image.tmdb.org/t/p/w300';
+
+    async function getKoreanName(personId) {
+      const res = await fetch(`https://api.themoviedb.org/3/person/${personId}?api_key=${API_KEY}&language=ko-KR`);
+      const data = await res.json();
+      return data.name || '';
+    }
+
+    async function fetchCredits(movieId) {
+      const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`);
+      const data = await res.json();
+
+      const directorInfo = data.crew.find(c => c.job === 'Director');
+      const director = directorInfo
+        ? await getKoreanName(directorInfo.id)
+        : '정보 없음';
+
+      const mainCastNames = await Promise.all(
+        data.cast.slice(0, 3).map(async actor => {
+          const name = await getKoreanName(actor.id);
+          return name || actor.name;
+        })
+      );
+
+      const mainCast = mainCastNames.join(', ');
+
+      return { director, mainCast };
+    }
+
+    async function fetchMovies() {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      const movies = data.results;
+
+      const movieList = document.getElementById('movie-list');
+      movieList.innerHTML = '';
+
+      for (let movie of movies.slice(0, 5)) {
+        const { director, mainCast } = await fetchCredits(movie.id);
+
+        const movieBox = document.createElement('div');
+        movieBox.className = 'movie-box';
+
+        const poster = document.createElement('img');
+        poster.src = IMG_URL + movie.poster_path;
+        poster.alt = movie.title;
+        poster.className = 'poster';
+
+        const info = document.createElement('div');
+        info.className = 'info';
+
+        info.innerHTML = `
+          <h3>${movie.title}</h3>
+          <p><strong>개봉:</strong> ${movie.release_date?.slice(0, 4)}</p>
+          <p><strong>감독:</strong> ${director}</p>
+          <p><strong>주연:</strong> ${mainCast}</p>
+          <p>${movie.overview.slice(0, 100)}...</p>
+          <div class="stars">
+            <div>☆ ☆ ☆ ☆ ☆</div>
+            <div>☆ ☆ ☆ ☆ ☆</div>
+          </div>
+        `;
+
+        movieBox.appendChild(poster);
+        movieBox.appendChild(info);
+        movieList.appendChild(movieBox);
+      }
+    }
+
+    fetchMovies();
+  </script>
+
+    
+</body>
+</html>
